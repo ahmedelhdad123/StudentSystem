@@ -1,10 +1,15 @@
 package org.spring.student.studentsystem.controller;
 
+import org.spring.student.studentsystem.entity.Student;
 import org.spring.student.studentsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+// localhost:8085/system
+@RequestMapping("system")
 public class StudentController {
 
 
@@ -13,5 +18,39 @@ public class StudentController {
     @Autowired
     public StudentController(StudentService service) {
         this.service = service;
+    }
+
+    // localhost:8085/system/student
+    @GetMapping("students")
+    public List<Student> getAllStudent(){
+        return service.getAllStudent();
+    }
+    // localhost:8085/system/student/id
+    @GetMapping("student/{id}")
+    public Student getStudentById(@PathVariable Long id)
+    {
+        return service.getStudentById(id);
+    }
+
+    // localhost:8085/system/students
+    @PostMapping("students")
+    public Student addStudent(@RequestBody Student student)
+    {
+       return service.addStudent(student);
+    }
+
+    // localhost:8085/system/students?id=
+    @PutMapping("students")
+    public Student editStudent(@RequestBody Student student,@RequestParam Long id)
+    {
+        student.setId(id);
+        return service.addStudent(student);
+    }
+
+    @DeleteMapping("students")
+    public String deleteStudent(Long  id)
+    {
+        service.deleteStudent(id);
+        return "Done!";
     }
 }
