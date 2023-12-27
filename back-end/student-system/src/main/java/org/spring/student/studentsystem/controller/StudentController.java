@@ -61,4 +61,11 @@ public class StudentController {
     {
         return service.findByFullName(fullName);
     }
+
+    // http://localhost:8085/system/students/length
+    @GetMapping("students/length")
+    public Long getStudentLength()
+    {
+        return service.getStudentLength();
+    }
 }
