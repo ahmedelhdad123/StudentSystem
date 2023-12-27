@@ -3,7 +3,9 @@ package org.spring.student.studentsystem.service;
 import org.spring.student.studentsystem.dao.StudentRepository;
 import org.spring.student.studentsystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -17,8 +19,9 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getAllStudent(){
-        return studentRepository.findAll();
+    public List<Student> getAllStudent(int page,int size){
+        Pageable pageable= PageRequest.of(page, size);
+        return studentRepository.findAll(pageable).getContent();
     }
 
     public Student getStudentById(Long id)

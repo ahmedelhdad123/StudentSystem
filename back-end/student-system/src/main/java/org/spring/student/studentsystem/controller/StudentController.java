@@ -20,10 +20,10 @@ public class StudentController {
         this.service = service;
     }
 
-    // localhost:8085/system/student
+    // localhost:8085/system/students?page=0&size=4
     @GetMapping("students")
-    public List<Student> getAllStudent(){
-        return service.getAllStudent();
+    public List<Student> getAllStudent(@RequestParam int page,@RequestParam int size){
+        return service.getAllStudent(page, size);
     }
     // localhost:8085/system/student/id
     @GetMapping("student/{id}")
