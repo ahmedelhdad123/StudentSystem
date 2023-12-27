@@ -40,4 +40,8 @@ public class StudentService {
         studentRepository.findById(id);
         return "Done!";
     }
+    public List<Student> findByFullName(String fullName)
+    {
+        return studentRepository.findByFullName(fullName);
+    }
 }

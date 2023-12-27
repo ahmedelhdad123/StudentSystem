@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 // localhost:8085/system
-@RequestMapping("system")
+@RequestMapping("system/")
 public class StudentController {
 
 
@@ -47,10 +47,18 @@ public class StudentController {
         return service.addStudent(student);
     }
 
+    // http://localhost:8085/system/students
     @DeleteMapping("students")
     public String deleteStudent(Long  id)
     {
         service.deleteStudent(id);
         return "Done!";
+    }
+
+    // http://localhost:8085/system/students/searchname?fullName= name
+    @GetMapping("students/searchname")
+    public List<Student> findByFullName(@RequestParam String fullName)
+    {
+        return service.findByFullName(fullName);
     }
 }
