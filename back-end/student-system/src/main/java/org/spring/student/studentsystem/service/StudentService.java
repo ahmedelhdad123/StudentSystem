@@ -4,8 +4,8 @@ import org.spring.student.studentsystem.dao.StudentRepository;
 import org.spring.student.studentsystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -48,8 +48,15 @@ public class StudentService {
         return studentRepository.findByFullNameContaining(fullName);
     }
 
+   // To Get Size Of Student In Database by Java Stream
     public Long getStudentLength()
     {
-        return studentRepository.getStudentLength();
+        return studentRepository.findAll()
+                .stream()
+                .count();
+    }
+    public int getStudentLengthByName(String name)
+    {
+        return  studentRepository.findByFullNameContaining(name).size();
     }
 }

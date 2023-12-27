@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 //@RepositoryRestResource
@@ -14,8 +15,11 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     // Search by Character to get All Word
     public List<Student> findByFullNameContaining(String fullName);
 
-    // To Get Size Of Student In Database
-
+    /* To Get Size Of Student In Database by Query
     @Query("select count(id) from Student")
     public Long getStudentLength();
+
+     */
+
+
 }
