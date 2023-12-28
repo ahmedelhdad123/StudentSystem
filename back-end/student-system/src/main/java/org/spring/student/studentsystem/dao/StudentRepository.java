@@ -13,13 +13,18 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student,Long> {
 
     // Search by Character to get All Word
-    public List<Student> findByFullNameContaining(String fullName);
+    List<Student> findByFullNameContaining(String fullName);
 
     /* To Get Size Of Student In Database by Query
     @Query("select count(id) from Student")
     public Long getStudentLength();
-
      */
+
+    /*   getStudentLengthByName   By Query
+    @Query("select count(id) from Student where fullName LIKE %?1%")
+     Long getStudentLengthByName(String name);
+     */
+
 
 
 }
